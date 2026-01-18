@@ -309,6 +309,7 @@ object PluginManager {
             ForwardedMessages(),
             GifPreviewFix(),
             MembersListFix(),
+            MollyTheme(),  // Mollycord default theme
             NewPins(),
             NoTrack(),
             OpenLinksExternallyFix(),

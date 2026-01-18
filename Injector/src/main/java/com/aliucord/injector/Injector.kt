@@ -1,6 +1,7 @@
 /*
- * This file is part of Aliucord, an Android Discord client mod.
- * Copyright (c) 2022 Juby210 & Vendicated
+ * This file is part of Mollycord, an Android Discord client mod.
+ * Based on Aliucord by Juby210 & Vendicated
+ * Modified by Bubblegum @bubblegum4fun
  * Licensed under the Open Software License version 3.0
  */
 
@@ -25,12 +26,12 @@ import java.net.HttpURLConnection
 import java.net.URL
 import java.util.concurrent.atomic.AtomicBoolean
 
-const val LOG_TAG = "Injector"
+const val LOG_TAG = "Mollycord"
 private const val DATA_URL = "https://builds.aliucord.com/data.json"
 private const val DEX_URL = "https://builds.aliucord.com/Aliucord.zip"
 
 @Suppress("DEPRECATION")
-private val BASE_DIRECTORY = File(Environment.getExternalStorageDirectory().absolutePath, "Aliucord")
+private val BASE_DIRECTORY = File(Environment.getExternalStorageDirectory().absolutePath, "Mollycord")
 private const val ALIUCORD_FROM_STORAGE_KEY = "AC_from_storage"
 
 private var unhook: XC_MethodHook.Unhook? = null
@@ -68,7 +69,7 @@ private fun init(appActivity: AppActivity) {
     val dexFile = appActivity.codeCacheDir.resolve("Aliucord.zip")
     val customDexFile = appActivity.codeCacheDir.resolve("Aliucord.custom.zip")
 
-    Logger.d("Initializing Aliucord...")
+    Logger.d("Initializing Mollycord...")
     try {
         val useCustomDex = useCustomDex(appActivity)
 
@@ -113,18 +114,18 @@ private fun init(appActivity: AppActivity) {
             if (!successRef.get()) return
         }
 
-        Logger.d("Adding Aliucord to the classpath...")
+        Logger.d("Adding Mollycord to the classpath...")
         addDexToClasspath(if (useCustomDex) customDexFile else dexFile, appActivity.classLoader)
         val c = Class.forName("com.aliucord.Main")
         val preInit = c.getDeclaredMethod("preInit", AppActivity::class.java)
         val init = c.getDeclaredMethod("init", AppActivity::class.java)
 
-        Logger.d("Invoking main Aliucord entry point...")
+        Logger.d("Invoking main Mollycord entry point...")
         preInit.invoke(null, appActivity)
         init.invoke(null, appActivity)
-        Logger.d("Finished initializing Aliucord")
+        Logger.d("Finished initializing Mollycord")
     } catch (th: Throwable) {
-        error(appActivity, "Failed to initialize Aliucord", th)
+        error(appActivity, "Failed to initialize Mollycord", th)
         try {
             // Delete cached file so it is reinstalled the next time
             dexFile.delete()
@@ -174,7 +175,7 @@ fun downloadLatestAliucordDex(outputFile: File) {
 @SuppressLint("DiscouragedPrivateApi") // this private api seems to be stable, thanks to facebook who use it in the facebook app
 @Throws(Throwable::class)
 private fun addDexToClasspath(dex: File, classLoader: ClassLoader) {
-    Logger.d("Adding Aliucord to the classpath...")
+    Logger.d("Adding Mollycord to the classpath...")
 
     // https://android.googlesource.com/platform/libcore/+/58b4e5dbb06579bec9a8fc892012093b6f4fbe20/dalvik/src/main/java/dalvik/system/BaseDexClassLoader.java#59
     val pathListField = BaseDexClassLoader::class.java.getDeclaredField("pathList")

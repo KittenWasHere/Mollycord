@@ -1,6 +1,7 @@
 /*
- * This file is part of Aliucord, an Android Discord client mod.
- * Copyright (c) 2021 Juby210 & Vendicated
+ * This file is part of Mollycord, an Android Discord client mod.
+ * Based on Aliucord by Juby210 & Vendicated
+ * Modified by Bubblegum @bubblegum4fun
  * Licensed under the Open Software License version 3.0
  */
 

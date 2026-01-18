@@ -1,6 +1,7 @@
 /*
- * This file is part of Aliucord, an Android Discord client mod.
- * Copyright (c) 2024 Juby210 & Vendicated
+ * This file is part of Mollycord, an Android Discord client mod.
+ * Based on Aliucord by Juby210 & Vendicated
+ * Modified by Bubblegum @bubblegum4fun
  * Licensed under the Open Software License version 3.0
  */
 
@@ -144,8 +145,9 @@ public final class Main {
             layout.addView(new Divider(context), baseIndex++);
 
             var header = new TextView(context, null, 0, R.i.UiKit_Settings_Item_Header);
-            header.setText("Aliucord");
+            header.setText("Mollycord");
             header.setTypeface(ResourcesCompat.getFont(context, Constants.Fonts.whitney_semibold));
+            header.setTextColor(0xFFFF0000); // Red color for Mollycord header
             layout.addView(header, baseIndex++);
 
             var font = ResourcesCompat.getFont(context, Constants.Fonts.whitney_medium);
@@ -172,14 +174,20 @@ public final class Main {
             );
 
             TextView versionView = layout.findViewById(Utils.getResId("app_info_header", "id"));
-            var text = versionView.getText() + " | Aliucord " + BuildConfig.VERSION;
+            var text = versionView.getText() + " | Mollycord " + BuildConfig.VERSION;
             if (!BuildConfig.RELEASE) text += " (Custom)";
             if (Utils.isDebuggable()) text += " [DEBUGGABLE]";
             versionView.setText(text);
 
             TextView uploadLogs = layout.findViewById(Utils.getResId("upload_debug_logs", "id"));
-            uploadLogs.setText("Aliucord Support Server");
-            uploadLogs.setOnClickListener(e -> Utils.joinSupportServer(e.getContext()));
+            uploadLogs.setText("About Mollycord");
+            uploadLogs.setOnClickListener(e -> {
+                new android.app.AlertDialog.Builder(e.getContext())
+                    .setTitle("About Mollycord")
+                    .setMessage("Welcome to Mollycord!\n\nA modded Discord client for Android with many new upcoming features and themes!\n\nThe goal is to make Discord YOURS, while maintaining a safe and reliable client.\n\nMade by Bubblegum @bubblegum4fun\nMore changes coming soon! <3")
+                    .setPositiveButton("OK", null)
+                    .show();
+            });
 
             // Remove Discord changelog button
             TextView changelogBtn = layout.findViewById(Utils.getResId("changelog", "id"));
@@ -206,7 +214,7 @@ public final class Main {
                 linearLayout.setBackgroundColor(ColorCompat.getThemedColor(context, backgroundColor));
                 linearLayout.setOnClickListener(widget -> safeModeDialog(indicator));
                 indicatorText.setTextColor(ColorCompat.getThemedColor(context, textColor));
-                indicatorText.setText("Safe mode enabled");
+                indicatorText.setText("Mollycord Safe Mode");
                 linearLayout.setVisibility(View.VISIBLE);
 
                 Utils.mainThread.post(() -> indicatorState.updateState(true, false, false));
@@ -517,7 +525,7 @@ public final class Main {
             }
 
             if (!PluginManager.failedToLoad.isEmpty())
-                Utils.showToast("Some plugins failed to load. Check the plugins page for more info.");
+                Utils.showToast("Some Mollycord plugins failed to load. Check the plugins page for more info.");
         }
         loadedPlugins = true;
     }
@@ -579,10 +587,10 @@ public final class Main {
         var desc = """
             You are currently in safe mode. Plugins are disabled.
 
-            Press OK to exit safe mode and restart Aliucord.
+            Press OK to exit safe mode and restart Mollycord.
             """;
         new ConfirmDialog()
-            .setTitle("Safe Mode")
+            .setTitle("Mollycord Safe Mode")
             .setDescription(desc)
             .setOnOkListener(widget -> {
                 settings.setBool(AliucordPageKt.ALIUCORD_SAFE_MODE_KEY, false);

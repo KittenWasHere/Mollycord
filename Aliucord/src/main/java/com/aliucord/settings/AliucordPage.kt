@@ -1,6 +1,7 @@
 /*
- * This file is part of Aliucord, an Android Discord client mod.
- * Copyright (c) 2021 Juby210 & Vendicated
+ * This file is part of Mollycord, an Android Discord client mod.
+ * Based on Aliucord by Juby210 & Vendicated
+ * Modified by Bubblegum @bubblegum4fun
  * Licensed under the Open Software License version 3.0
  */
 
@@ -28,13 +29,13 @@ class AliucordPage : SettingsPage() {
     override fun onViewBound(view: View) {
         super.onViewBound(view)
 
-        setActionBarTitle("Aliucord")
-        setActionBarSubtitle("Aliucord Settings")
+        setActionBarTitle("Mollycord")
+        setActionBarSubtitle("Mollycord Settings")
 
         val ctx = view.context
 
-        addHeader(ctx, "Aliucord Settings")
-        addSwitch(ctx, AUTO_UPDATE_ALIUCORD_KEY, "Automatically update Aliucord", null)
+        addHeader(ctx, "Mollycord Settings")
+        addSwitch(ctx, AUTO_UPDATE_ALIUCORD_KEY, "Automatically update Mollycord", null)
         addSwitch(ctx, AUTO_UPDATE_PLUGINS_KEY, "Automatically update plugins", null)
         addSwitch(ctx,
             AUTO_DISABLE_ON_CRASH_KEY,
@@ -50,7 +51,7 @@ class AliucordPage : SettingsPage() {
             addSwitch(
                 ctx,
                 ALIUCORD_FROM_STORAGE_KEY,
-                "Use Aliucord core from storage",
+                "Use Mollycord core from storage",
                 "Meant for developers. Do not enable unless you know what you're doing. " +
                     "Uses a custom core bundle that was pushed to the device.",
             ) {
@@ -59,16 +60,16 @@ class AliucordPage : SettingsPage() {
         }
 
         addDivider(ctx)
-        addHeader(ctx, "Links")
+        addHeader(ctx, "About Mollycord")
+        addLink(ctx, "Made by @bubblegum4fun", R.e.ic_heart_24dp) {
+            android.app.AlertDialog.Builder(it.context)
+                .setTitle("About Mollycord")
+                .setMessage("Welcome to Mollycord!\n\nA modded Discord client for Android with many new upcoming features and themes!\n\nThe goal is to make Discord YOURS, while maintaining a safe and reliable client.\n\nMade by Bubblegum @bubblegum4fun\nMore changes coming soon! <3")
+                .setPositiveButton("OK", null)
+                .show()
+        }
         addLink(ctx, "Source Code", R.e.ic_account_github_white_24dp) {
-            Utils.launchUrl(Constants.ALIUCORD_GITHUB_REPO)
-        }
-        addLink(ctx, "Support Server", R.e.ic_help_24dp) {
-            Utils.joinSupportServer(it.context)
-        }
-        addLink(ctx, "Support us with a donation!", R.e.ic_heart_24dp) {
-            val user = arrayOf("Juby210", "rushiiMachine").random()
-            Utils.launchUrl("https://github.com/sponsors/$user")
+            Utils.launchUrl(Constants.MOLLYCORD_GITHUB_REPO)
         }
     }
 

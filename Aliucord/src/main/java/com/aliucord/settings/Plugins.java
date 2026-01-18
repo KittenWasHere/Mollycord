@@ -1,6 +1,7 @@
 /*
- * This file is part of Aliucord, an Android Discord client mod.
- * Copyright (c) 2021 Juby210 & Vendicated
+ * This file is part of Mollycord, an Android Discord client mod.
+ * Based on Aliucord by Juby210 & Vendicated
+ * Modified by Bubblegum @bubblegum4fun
  * Licensed under the Open Software License version 3.0
  */
 
@@ -306,7 +307,7 @@ public class Plugins extends SettingsPage {
         if (PluginManager.isSafeModeEnabled()) {
             TextView safeModeNotice = new TextView(context, null, 0, R.i.UiKit_Settings_Item_Header);
             safeModeNotice.setAllCaps(false);
-            safeModeNotice.setText("This page won't work while safe mode is on.\n Use Aliucord Manager to change plugin settings.");
+            safeModeNotice.setText("This page won't work while safe mode is on.\n Use Mollycord Manager to change plugin settings.");
             safeModeNotice.setTypeface(ResourcesCompat.getFont(context, Constants.Fonts.whitney_semibold));
             safeModeNotice.setGravity(Gravity.CENTER);
 
@@ -379,7 +380,7 @@ public class Plugins extends SettingsPage {
 
     public void noManagerDialog() {
         var desc = """
-            Aliucord Manager is not installed on this device.
+            Mollycord Manager is not installed on this device.
 
             Click OK to download manager.
             """;
@@ -387,7 +388,7 @@ public class Plugins extends SettingsPage {
         new ConfirmDialog()
             .setTitle("Not Found")
             .setDescription(desc)
-            .setOnOkListener(widget -> Utils.launchUrl("https://github.com/Aliucord/Manager/releases/latest"))
+            .setOnOkListener(widget -> Utils.launchUrl(Constants.MOLLYCORD_GITHUB_REPO + "/releases/latest"))
             .show(getParentFragmentManager(), "No Manager");
     }
 }

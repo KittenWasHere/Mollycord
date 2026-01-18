@@ -1,6 +1,7 @@
 /*
- * This file is part of Aliucord, an Android Discord client mod.
- * Copyright (c) 2021 Juby210 & Vendicated
+ * This file is part of Mollycord, an Android Discord client mod.
+ * Based on Aliucord by Juby210 & Vendicated
+ * Modified by Bubblegum @bubblegum4fun
  * Licensed under the Open Software License version 3.0
  */
 
@@ -32,9 +33,12 @@ public final class Constants {
         public static final int whitney_semibold = base + 7;
     }
 
-    /** Link to the Aliucord github repo */
-    public static final String ALIUCORD_GITHUB_REPO = "https://github.com/Aliucord/Aliucord";
-    /** Code of the Aliucord discord server */
+    /** Link to the Mollycord github repo */
+    public static final String MOLLYCORD_GITHUB_REPO = "https://github.com/bubblegum4fun/Mollycord";
+    /** Mollycord contact */
+    public static final String MOLLYCORD_CONTACT = "@bubblegum4fun";
+    // Keep Aliucord constants for plugin compatibility
+    public static final String ALIUCORD_GITHUB_REPO = MOLLYCORD_GITHUB_REPO;
     public static final String ALIUCORD_SUPPORT = "EsNDvBaHVU";
     public static final long ALIUCORD_GUILD_ID = 811255666990907402L;
     public static final long SUPPORT_CHANNEL_ID = 811261298997460992L; // #support
@@ -48,9 +52,9 @@ public final class Constants {
     public static final long SUPPORT_HELPER_ROLE_ID = 1397067198761144361L; // @support-helper
     public static final long BOT_SPAM_CHANNEL_ID = 811263527239024640L; // #bot-spam
 
-    /** Path of Aliucord folder */
+    /** Path of Mollycord folder */
     @SuppressWarnings("deprecation")
-    public static final String BASE_PATH = Environment.getExternalStorageDirectory().getAbsolutePath() + "/Aliucord";
+    public static final String BASE_PATH = Environment.getExternalStorageDirectory().getAbsolutePath() + "/Mollycord";
     /** Path of Plugin folder */
     public static final String PLUGINS_PATH = BASE_PATH + "/plugins";
     /** Path of Crashlog folder */
